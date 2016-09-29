@@ -1,0 +1,15 @@
+{
+    "name": "karnin/wxpay",
+    "authors": [
+        {
+            "name": "karnin",
+            "email": "176205019@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Karnin\\WxPay\\": "src"
+        }
+    }
+}
