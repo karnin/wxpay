@@ -10,8 +10,8 @@ class Wxpay
         'notify_url' => '' /*自定义的回调程序地址id*/
     );
 
-    public function __construct(){
-
+    public function __construct($config){
+         $this->config=$config;
     }
     public function unifiedorder($data){
         $url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
