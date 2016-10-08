@@ -30,7 +30,7 @@ class Wxpay
         libxml_disable_entity_loader(true);
         $result = json_decode(json_encode(simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
         if($result){
-           return $this->toClient($result['prepayid']);
+           return $this->toClient($result['prepay_id']);
         }else{
             return false;
         }
