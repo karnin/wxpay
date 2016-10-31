@@ -123,4 +123,23 @@ class Wxpay
             return false;
         }
     }
+
+    public function notify(){
+        $xml = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : file_get_contents("php://input");
+        //将XML转为array
+        //禁止引用外部xml实体
+        libxml_disable_entity_loader(true);
+        $data = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
+        if ($data['return_code'] != 'SUCCESS') {
+            //2 支付错误
+            return 2;
+        }
+
+        $result=$this->sign($data);
+        if ($result != $data['sign']) {
+            //3 签名错误
+            return 3;
+        }
+        return $data;
+    }
 }
